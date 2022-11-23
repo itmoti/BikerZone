@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthContext, { UserContext } from '../Context/AuthContex';
 
 const SignUp = () => {
-   const {signup , updateFullProfile} = useContext(UserContext)
+   const {signup , updateFullProfile , googleSignIn} = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
    console.log(user.Email)
@@ -22,6 +22,11 @@ const SignUp = () => {
 
         })
         .catch(err => console.log(err))
+    }
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(data => console.log(data))
+        .catch (error => console.log(error))
     }
     return (
         <div className='text-center my-10 flex justify-center'>
@@ -48,9 +53,10 @@ const SignUp = () => {
                     </label>
                 </div>
                 <input className='btn btn-primary' type="submit" />
-                <p>Already Have a account? <Link className='hover:text-primary underline' to={'/login'}>Login</Link> </p>
+                <p>Already Have an account? <Link className='hover:text-primary underline' to={'/login'}>Login</Link> </p>
                 
             </form>
+            <button onClick={handleGoogleSignIn} className='btn btn-outline-primary '>Google</button>
         </div>
     );
 };

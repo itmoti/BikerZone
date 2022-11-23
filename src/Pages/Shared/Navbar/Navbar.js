@@ -7,6 +7,7 @@ const Navbar = () => {
    
     const items = <>
         <li><Link to={'/'}>Home</Link></li>
+        {user && <li><Link to={'/Dashboard'}>DashBoard</Link></li>}
         <li><Link>Blog</Link></li>
         
     </>
