@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../../Context/AuthContex';
 
 const Navbar = () => {
+    const {user ,logOut } = useContext(UserContext)
+   
     const items = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link>Blog</Link></li>
@@ -26,7 +29,10 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0 hidden lg:flex">
                   {items}
                 </ul>
-            <Link className="btn btn-primary btn-sm">Login</Link>
+            {
+                !user ? <Link to='/login' className="btn btn-primary btn-sm">Login</Link> 
+                : <Link onClick={() =>  logOut()} className="btn btn-primary btn-sm">Logout</Link>
+            }
   </div>
         </div>
     );

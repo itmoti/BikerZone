@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import AuthContext, { UserContext } from '../Context/AuthContex';
 
 const SignUp = () => {
-    const [data, setData] = ('')
+   const {signup , updateFullProfile} = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleSignUpBtn = (data) => {
-        // (data) => setData(JSON.stringify(data))
-        console.log(data)
+    const handleSignUpBtn = (user) => {
+   console.log(user.Email)
+       
+        console.log(user.email)
+        signup(user.Email , user.Password)
+        .then(data => {
+            console.log(data)
+             const info = {
+                displayName : user.Name
+             }
+            updateFullProfile(info)
+            .then(data => {})
+            .catch(error => console.log(error))
+
+        })
+        .catch(err => console.log(err))
     }
     return (
         <div className='text-center my-10 flex justify-center'>

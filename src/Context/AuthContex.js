@@ -8,7 +8,7 @@ export const UserContext = createContext();
 const AuthContext = ({ children }) => {
     const [loading , setLoading] = useState(true)
     const auth = getAuth(app)
-    const [user , setUser] = useState('Moti')
+    const [user , setUser] = useState('')
     const signup = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
 
