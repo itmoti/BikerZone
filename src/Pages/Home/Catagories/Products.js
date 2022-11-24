@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import {  useParams } from 'react-router-dom';
 import { UserContext } from '../../../Context/AuthContex';
 
 import BookNowModal from './BookNowModal';

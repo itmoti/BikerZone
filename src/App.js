@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { RouterProvider } from 'react-router-dom';
 import { Router } from './Routes/Router';
-import { ToastContainer } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
