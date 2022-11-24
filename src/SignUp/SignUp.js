@@ -7,7 +7,7 @@ const SignUp = () => {
    const {signup , updateFullProfile , googleSignIn} = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
-   console.log(user.Email)
+   console.log(user)
        
         console.log(user.email)
         signup(user.Email , user.Password)
@@ -17,7 +17,25 @@ const SignUp = () => {
                 displayName : user.Name
              }
             updateFullProfile(info)
-            .then(data => {})
+            .then(data => {
+               const userInfo = {
+                name : user.Name ,
+                email : user.Email,
+                seller : user.seller
+
+               }
+              fetch('http://localhost:5000/users' , 
+              {
+                method : 'POST' , 
+                headers : {
+                    'content-type' : 'application/json'
+                } ,
+                body : JSON.stringify(userInfo) 
+              })
+              .then(res => res.json())
+              .then(data => console.log(data))
+
+            })
             .catch(error => console.log(error))
 
         })
@@ -54,9 +72,9 @@ const SignUp = () => {
                 </div>
                 <input className='btn btn-primary' type="submit" />
                 <p>Already Have an account? <Link className='hover:text-primary underline' to={'/login'}>Login</Link> </p>
-                
+                <button onClick={handleGoogleSignIn} className='btn btn-outline-primary '>Google</button>
             </form>
-            <button onClick={handleGoogleSignIn} className='btn btn-outline-primary '>Google</button>
+            
         </div>
     );
 };

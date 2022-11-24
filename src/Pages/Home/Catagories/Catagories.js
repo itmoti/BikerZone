@@ -6,19 +6,20 @@ import data2 from '../../../data.json'
 
 
 const Catagories = () => {
-    const {user} = useContext(UserContext)
-    console.log(user)
-    // const [catagories,setCatagories] = useState('')
-    // useEffect( () => {
-    //     fetch(data) 
-    //     .then(res => res.json())
-    //     .then(data => console.log(data))
-    // },[])
+    const { user } = useContext(UserContext)
+
+    const [catagories, setCatagories] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/catagories')
+            .then(res => res.json())
+            .then(data => setCatagories(data))
+    }, [])
+   
     return (
         <div className='mt-7'>
             <h1 className="text-2xl text-center text-primary">  Caragories</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-6'>
-                {data2.map(catagory =>
+                { catagories && catagories?.map(catagory =>
 
 
                     <div className="card w-52 mx-auto bg-base-100 shadow-xl">

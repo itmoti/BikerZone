@@ -18,7 +18,7 @@ const DashBoardLayout = () => {
             <h1 className="text-3xl text-center text-primary">DashBoard</h1>
             <div className="drawer drawer-mobile">
                 <input id="dashBoardDrawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content p-10 ">
                     <Outlet></Outlet>
                     <label htmlFor="dashBoardDrawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 

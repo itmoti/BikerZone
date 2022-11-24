@@ -1,35 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import products from '../../../Catagory.json'
+import { UserContext } from '../../../Context/AuthContex';
+
 import BookNowModal from './BookNowModal';
 
 const Products = () => {
+    const {user} = useContext(UserContext)
     const { id } = useParams()
-    console.log(products)
+    
     const [bookingData , setBookingData] = useState(null)
     const handleBookingBtn = (event) => {
        event.preventDefault();
        console.log(event.target.text.value)
     }
 
-    //  const [products , setProducts] = useState('')
-    //  useEffect( () => {
-    //     fetch('') 
-    //     .then(res => res.json())
-    //     .then(data => {console.log(data)
-    //                 setProducts(data)
-    //     })
-    //  }, [])
-
+     const [products , setProducts] = useState('')
+     useEffect( () => {
+        fetch(`http://localhost:5000/catagory/${id}`) 
+        .then(res => res.json())
+        .then(data => {console.log(data)
+                    setProducts(data)
+        })
+     }, [])
+console.log(products)
     return (
         <div>
             <h1 className="text-3xl">Products</h1>
            <BookNowModal
            handleBookingBtn = { handleBookingBtn}
+           products = {products}
+           user = {user}
+
            ></BookNowModal>
             <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 '>
-                {
-                    products.map(product =>
+                { products &&
+                    products?.map(product =>
 
                         <div class="w-[90%] mx-auto bg-gray-800 border border-gray-700 rounded-lg shadow-md">
 
