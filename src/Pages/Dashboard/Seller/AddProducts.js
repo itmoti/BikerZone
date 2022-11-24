@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../Context/AuthContex';
 
 const AddProducts = () => {
     const { user } = useContext(UserContext);
+    const navigate = useNavigate()
 
 //    const [productInfo  , setProductInfo] = useState('')
     const [catagories, setCatagories] = useState([])
@@ -40,12 +43,13 @@ const AddProducts = () => {
             YearsOfPurchase,
             YearsOfUsage,
             SellerName: user.displayName,
+            SellerEmail : user.email ,
             AddedTime: new Date() ,
             ImageUrl
 
         }
         // setProductInfo(productInfo)
-        fetch('http://localhost:5000/dashboard/addProducts',
+        fetch('http://localhost:5000/dashboard/Products',
         {
             method: 'POST',
             headers: {
@@ -54,7 +58,13 @@ const AddProducts = () => {
             body: JSON.stringify(productInfo)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            if(data.insertedId) {
+               navigate('/dashboard/MyProducts')
+            toast.success('Succesfully Added')
+            }
+        })
     }
    
 

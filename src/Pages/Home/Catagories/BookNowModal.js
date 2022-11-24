@@ -14,7 +14,9 @@ console.log(ResellPrice)
                ResellPrice ,
                Productid : _id ,
               BuyerName : displayName ,
-              BuyerEmail : email
+              BuyerEmail : email ,
+              BuyerNumber : event.target.mobileNumber.value  ,
+              MeetingLocation : event.target.location.value 
             }
             fetch('http://localhost:5000/bookings' , {
               method : 'POST' , 
@@ -47,8 +49,8 @@ console.log(ResellPrice)
           <input type="text" defaultValue={displayName} placeholder="Product User" name='UserName' className="input input-bordered input-sm input-primary w-full max-w-xs" disabled required />
           <label className="label"><span className="label-text">Email</span> </label>
           <input type="text" defaultValue={email}  name='email' className="input input-bordered input-sm input-primary w-full max-w-xs" disabled required />
-          <label className="label"><span className="label-text">User Name</span> </label>
-          <input type="text" defaultValue={displayName} placeholder="Product User" name='UserName' className="input input-bordered input-sm input-primary w-full max-w-xs" disabled required />
+          <label className="label"><span className="label-text">Location</span> </label>
+          <input type="text"  placeholder="Location" name='location' className="input input-bordered input-sm input-primary w-full max-w-xs"  required />
           <label className="label"><span className="label-text">Mobile Number</span> </label>
           <input type="text"  placeholder="Mobile Number" name='mobileNumber' className="input input-bordered input-sm input-primary w-full max-w-xs"  required />
           <button type='submit' className="btn w-28 mt-3 btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-md">Submit</button>

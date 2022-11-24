@@ -43,7 +43,7 @@ const googleProvider = new GoogleAuthProvider();
              })
             return () => unsubscribe()
     },[])
-    const authInfo = {signup ,signIn , user , logOut  , loading , passwordReset , updateFullProfile , googleSignIn}
+    const authInfo = {signup ,signIn , user , logOut  , loading , passwordReset , updateFullProfile , googleSignIn }
     return (
         <UserContext.Provider value={authInfo}>
            {children}

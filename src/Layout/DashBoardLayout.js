@@ -6,11 +6,12 @@ const DashBoardLayout = () => {
     const items =
         <>
 
-            <li><Link to={'/dashboard'}>Sidebar Item 1</Link></li>
-            <li><Link to={'/dashboard/seller/AddProducts'}>Add a Product</Link></li>
-            <li><Link to={ '/dashboard/seller/MyProducts'}>My Products</Link></li>
-            <li><Link to={'/dashboard/admin/allBuyers'}>All Buyers</Link></li>
-            <li><Link to={'/dashboard/admin/allSellers'}>All Sellers</Link></li>
+            <li><Link to={'/dashboard'}>My Orders</Link></li>   Buyers 
+             <li><Link to={'/dashboard/AddProducts'}>Add a Product</Link></li> seller
+            <li><Link to={ '/dashboard/MyProducts'}>My Products</Link></li> seller
+            <li><Link to={'/dashboard/allBuyers'}>All Buyers</Link></li> admin
+            <li><Link to={'/dashboard/allSellers'}>All Sellers</Link></li>
+            <li><Link to={'/dashboard/reportedItems'}>Reported Item</Link></li>
         </>
     return (
         <div>

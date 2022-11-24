@@ -3,6 +3,7 @@ import DashBoardLayout from "../Layout/DashBoardLayout";
 import MainLayout from "../Layout/MainLayout";
 import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers";
+import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem";
 import MyOrders from "../Pages/Dashboard/Buyer/MyOrders";
 import AddProducts from "../Pages/Dashboard/Seller/AddProducts";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
@@ -10,6 +11,7 @@ import Products from "../Pages/Home/Catagories/Products";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 export const Router = createBrowserRouter([
     {
@@ -22,7 +24,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/catagory/:id',
-                element: <Products></Products>
+                element:<PrivateRoute> <Products></Products></PrivateRoute>
 
             },
             {
@@ -48,21 +50,25 @@ export const Router = createBrowserRouter([
                 element: <MyOrders></MyOrders>
             },
             {
-                path: '/dashboard/seller/AddProducts',
+                path: '/dashboard/AddProducts',
                 element: <AddProducts></AddProducts>
             },
             {
-                path: '/dashboard/seller/MyProducts',
+                path: '/dashboard/MyProducts',
                 element: <MyProducts></MyProducts>
             },
             {
-                path: '/dashboard/admin/allBuyers',
+                path: '/dashboard/allBuyers',
                 element: <AllBuyers></AllBuyers>
             },
             {
-                path: '/dashboard/admin/allSellers',
+                path: '/dashboard/allSellers',
                 element: <AllSellers></AllSellers>
             },
+            {
+                path : '/dashboard/reportedItems' ,
+                element : <ReportedItem></ReportedItem>
+            }
 
         ]
     }
