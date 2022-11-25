@@ -7,6 +7,7 @@ import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem";
 import MyOrders from "../Pages/Dashboard/Buyer/MyOrders";
 import AddProducts from "../Pages/Dashboard/Seller/AddProducts";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Products from "../Pages/Home/Catagories/Products";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -18,6 +19,7 @@ export const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement : <ErrorPage></ErrorPage> ,
         children: [
             {
                 path: '/',
@@ -73,5 +75,8 @@ export const Router = createBrowserRouter([
 
         ]
     } , 
-   
+    {
+        path : '*' ,
+        element :  <ErrorPage></ErrorPage>
+    }
 ])

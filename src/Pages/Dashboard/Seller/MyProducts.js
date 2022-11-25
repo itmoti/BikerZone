@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../../Context/AuthContex';
 import { useQuery } from '@tanstack/react-query'
+import Loader from '../../../Components/Loader';
 
 const MyProducts = () => {
   const { user } = useContext(UserContext)
   console.log(user.email)
   // const [products , setProducts] = useState([])
 
-  const { data: products, isLoading, error , refetch } = useQuery({
+  const { data: products , isLoading, error , refetch } = useQuery({
     queryKey: ['products'],
     queryFn: () => fetch(`http://localhost:5000/dashboard/products/${user.email}`).then(res => res.json())
 
@@ -32,8 +33,9 @@ const MyProducts = () => {
      })
   }
    if(isLoading) {
-    <div>Loading</div>
+  return <Loader></Loader>
    }
+ 
 console.log(products)
   return (
     <div>
@@ -52,7 +54,10 @@ console.log(products)
             </tr>
           </thead>
           <tbody>
-          {products?.map((product ,index) =>
+          {
+            
+            
+            products?.map((product ,index) =>
             
             <tr key={index}>
               <th>{index +1}</th>
@@ -62,14 +67,16 @@ console.log(products)
               {
                 product.Adveritse === true ? <span className='text-primary'>Advertised</span> : <button className='btn btn-primary' onClick={() => handleAdvertiseBtn(product._id)}>Advertise</button>
               }
-              {console.log(product.Adveritse)}
+             
               </td>
               <td>
               <button className='btn btn-primary' onClick={() => handleDeleteBtn(product._id)}>Delete</button>
                 
               </td>
             </tr>
-            )}
+            )
+
+          }
             
           
           
