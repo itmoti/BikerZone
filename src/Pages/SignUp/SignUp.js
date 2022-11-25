@@ -49,9 +49,11 @@ const SignUp = () => {
         googleSignIn()
         .then(data => {
             console.log(data)
+            console.log(data.user.displayName)
             const userInfo = {
-                name : data.displayName ,
-                email : data.email,
+                name : data.user.displayName ,
+                email : data.user.email,
+                seller : false
                 }
               fetch('http://localhost:5000/users' , 
               {
