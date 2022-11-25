@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import AuthContext, { UserContext } from '../Context/AuthContex';
+import { UserContext } from '../../Context/AuthContex';
+
 
 const SignUp = () => {
    const {signup , updateFullProfile , googleSignIn} = useContext(UserContext)

@@ -10,7 +10,8 @@ import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import Products from "../Pages/Home/Catagories/Products";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
-import SignUp from "../SignUp/SignUp";
+import SignUp from "../Pages/SignUp/SignUp";
+
 import PrivateRoute from "./PrivateRoute";
 
 export const Router = createBrowserRouter([
