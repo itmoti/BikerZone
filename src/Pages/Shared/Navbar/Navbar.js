@@ -32,7 +32,7 @@ const Navbar = () => {
                 </ul>
             {
                 !user ? <Link to='/login' className="btn btn-primary btn-sm">Login</Link> 
-                : <Link onClick={() =>  logOut()} className="btn btn-primary btn-sm">Logout</Link>
+                : <Link onClick={() =>  logOut()} className="btn btn-primary btn-sm text-white">Logout</Link>
             }
   </div>
         </div>

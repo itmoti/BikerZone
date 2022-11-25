@@ -11,7 +11,7 @@ const GetStarted = () => {
       <br/>
        at LOW PRICE!</h1>
       <p className="py-6">We sell secondhand bikes but we always thinks about customers</p>
-      <button className="btn btn-primary">Sign Up NOw</button>
+      <button className="btn btn-primary text-white">Sign Up NOw</button>
     </div>
   </div>
 </div>

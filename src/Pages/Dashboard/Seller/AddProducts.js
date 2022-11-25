@@ -95,7 +95,15 @@ const AddProducts = () => {
 
                 <label className="label">
                     <span className="label-text">Condition Type</span> </label>
-                <input type="text" placeholder="Condition Type" name='conditionType' className="input input-bordered input-sm input-primary w-full max-w-xs" required />
+                {/* <input type="text" placeholder="Condition Type" name='conditionType' className="input input-bordered input-sm input-primary w-full max-w-xs" required /> */}
+                <select name='conditionType' className="input input-bordered input-sm input-primary w-full max-w-xs" required>
+                <option value='Excellent'>Excellent</option>
+                <option value='Good'>Good</option>
+                <option value='Fair'>Fair</option>
+                  
+
+
+                </select>
                 <label className="label">
                     <span className="label-text">Select Catagory</span> </label>
                 <select name='catagoryName' className="input input-bordered input-sm input-primary w-full max-w-xs" required>

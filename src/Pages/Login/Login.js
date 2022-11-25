@@ -2,10 +2,16 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../Context/AuthContex';
+import { FcGoogle } from 'react-icons/fc';
+
 
 const Login = () => {
-    const {signIn } = useContext(UserContext)
-
+    const {signIn , googleSignIn } = useContext(UserContext)
+   const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then(res => res.json())
+    .then(data => console.log(data))
+   }
  
     const { register, handleSubmit,  formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
@@ -43,6 +49,9 @@ const Login = () => {
                 </div>
                 <input className='btn btn-primary' type="submit" />
                 <p>New Here? <Link className='hover:text-primary underline' to={'/signup'}>Sign Up</Link> </p>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline btn-primary hover:text-white active:text-white '> 
+                <FcGoogle className='mr-3'></FcGoogle>
+                Google</button>
                 
             </form>
         </div>
