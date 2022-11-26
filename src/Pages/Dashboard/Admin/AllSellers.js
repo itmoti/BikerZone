@@ -4,7 +4,11 @@ import React from 'react';
 const AllSellers = () => {
     const {data : sellers , refetch} = useQuery({
         queryKey : ['Sellers'] , 
-        queryFn : () =>  fetch(`http://localhost:5000/dashboard/allSellers`).then(res => res.json())
+        queryFn : () =>  fetch(`http://localhost:5000/dashboard/allSellers` , {
+          headers :{
+           authHeader :  `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        }).then(res => res.json())
     })
      const  handleDeleteBtn  = (id) => {
         fetch(`http://localhost:5000/dashboard/allSellers/${id}` , {
