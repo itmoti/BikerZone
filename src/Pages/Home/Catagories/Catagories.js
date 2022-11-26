@@ -22,13 +22,13 @@ const Catagories = () => {
                 {catagories && catagories?.map(catagory =>
 
 
-                    <div className="card w-52 mx-auto bg-base-100 shadow-xl">
+                    <div key={catagory._id} className="card border w-52 mx-auto bg-base-100 shadow-xl">
 
-                        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                        <figure className='h-2/4'><img className='image-full' src={catagory.CatagoryPicture} alt="Loading" /></figure>
                         <div className="card-body p-5">
-                            <h1 className="card-title text-100">{catagory.CatagoryName}</h1>
+                            <h1 className="card-title text-2xl text-100">{catagory.CatagoryName}</h1>
 
-                            <p>If a dog chews shoes whose shoes does he choose?   </p>
+                            <p><span className='font-semibold'>{catagory.CatagoryName}</span> is an international brand with great specialities.  </p>
                             <div className="card-actions justify-end">
                             <Link className='btn btn-primary btn-sm text-white' to={`/catagory/${catagory.CatagoryName}`} >Show bikes</Link>
                             </div>
