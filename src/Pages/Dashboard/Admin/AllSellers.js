@@ -22,6 +22,19 @@ const AllSellers = () => {
             refetch()
         })
      }
+
+     const handleVerifyBtn = (id) => {
+      fetch(`http://localhost:5000/dashboard/allSellers/verify/${id}` , {
+        method : 'Put' ,
+      
+
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        refetch()
+    })
+     }
     return (
         <div>
          
@@ -33,18 +46,26 @@ const AllSellers = () => {
                   <th></th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th></th>
+                  <th>Verify</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-              {sellers?.map((buyer ,index) =>
+              {sellers?.map((seller ,index) =>
                 
                 <tr key={index}>
                   <th>{index +1}</th>
-                  <td>{buyer.name}</td>
-                  <td>{buyer.email}</td>
+                  <td>{seller.name}</td>
+                  <td>{seller.email}</td>
                   <td>
-                    <button onClick={() => handleDeleteBtn(buyer._id)}>Delete</button>
+                   {seller.Verified ?
+                  'verified' 
+                  : 
+                  <button className='btn btn-sm btn-primary' onClick={() => handleVerifyBtn(seller._id)}>Verify</button> 
+                  }
+                  </td>
+                  <td>
+                    <button onClick={() => handleDeleteBtn(seller._id)}>Delete</button>
                   </td>
                 </tr>
                 )}

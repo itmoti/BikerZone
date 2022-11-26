@@ -7,25 +7,26 @@ import UseToken from '../../Hooks/UseToken';
 
 
 const Login = () => {
+    const navigate = useNavigate()
+
 
     const { signIn, googleSignIn } = useContext(UserContext)
         const [loggedInEmail , setLoggedInEmail] = useState('')
-     
+       console.log('loggedin email' , loggedInEmail)
         const [token] = UseToken(loggedInEmail)
 
+     if(token) {
+        navigate('/')
+     }
 
-
-    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
-
+        setLoggedInEmail('')
         signIn(user.Email, user.Password)
             .then(data => {
-               
-               
-
-                setLoggedInEmail(data.user.email)
-                navigate('/')
+                console.log('my query' , data.user.email)
+               setLoggedInEmail(data.user.email)
+              
             })
             .catch(err => console.log(err))
     }  
@@ -55,7 +56,7 @@ const Login = () => {
 
                         setLoggedInEmail(user.user.email)
                         console.log(user.user.email)
-
+                        
                    
 
                     })
@@ -81,10 +82,7 @@ const Login = () => {
 
 
                 <div >
-                    <label className="label cursor-pointer flex  mx-auto ">
-                        <span className="label-text font-semibold">Become Seller</span>
-                        <input {...register('seller')} type="checkbox" className="toggle text-xs" />
-                    </label>
+                   
                 </div>
                 <input className='btn btn-primary' type="submit" />
                 <p>New Here? <Link className='hover:text-primary underline' to={'/signup'}>Sign Up</Link> </p>

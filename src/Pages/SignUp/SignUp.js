@@ -10,7 +10,10 @@ const SignUp = () => {
     const [loggedInEmail , setLoggedInEmail] = useState('')
      
     const [token] = useToken(loggedInEmail)
-    const navigate = useNavigate('')
+    const navigate = useNavigate()
+    if(token) {
+        navigate('/')
+    }
    const {signup , updateFullProfile , googleSignIn} = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
@@ -43,7 +46,7 @@ const SignUp = () => {
               .then(data => {
                 console.log(data)
                 setLoggedInEmail(user.Email)
-                navigate('/')
+                
             })
 
             })
@@ -76,7 +79,7 @@ const SignUp = () => {
               .then(data2 => {
                 console.log(data2)
                
-               navigate('/')
+             
               })
         })
         .catch (error => console.log(error))
