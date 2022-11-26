@@ -1,16 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/AuthContex';
 import { FcGoogle } from 'react-icons/fc';
+import useToken from '../../Hooks/UseToken';
 
 
 const SignUp = () => {
+    const [loggedInEmail , setLoggedInEmail] = useState('')
+     
+    const [token] = useToken(loggedInEmail)
     const navigate = useNavigate('')
    const {signup , updateFullProfile , googleSignIn} = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
-   console.log(user)
+       
        
         
         signup(user.Email , user.Password)
@@ -36,7 +40,11 @@ const SignUp = () => {
                 body : JSON.stringify(userInfo) 
               })
               .then(res => res.json())
-              .then(data => console.log(data))
+              .then(data => {
+                console.log(data)
+                setLoggedInEmail(user.Email)
+                navigate('/')
+            })
 
             })
             .catch(error => console.log(error))
@@ -55,6 +63,7 @@ const SignUp = () => {
                 email : data.user.email,
                 seller : false
                 }
+                setLoggedInEmail(data.user.email)
               fetch('http://localhost:5000/users' , 
               {
                 method : 'POST' , 
@@ -64,8 +73,9 @@ const SignUp = () => {
                 body : JSON.stringify(userInfo) 
               })
               .then(res => res.json())
-              .then(data => {
-                console.log(data)
+              .then(data2 => {
+                console.log(data2)
+               
                navigate('/')
               })
         })
