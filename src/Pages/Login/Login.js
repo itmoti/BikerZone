@@ -11,25 +11,25 @@ const Login = () => {
 
 
     const { signIn, googleSignIn } = useContext(UserContext)
-        const [loggedInEmail , setLoggedInEmail] = useState('')
-       console.log('loggedin email' , loggedInEmail)
-        const [token] = UseToken(loggedInEmail)
+    const [loggedInEmail, setLoggedInEmail] = useState('')
+    console.log('loggedin email', loggedInEmail)
+    const [token] = UseToken(loggedInEmail)
 
-     if(token) {
+    if (token) {
         navigate('/')
-     }
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
         setLoggedInEmail('')
         signIn(user.Email, user.Password)
             .then(data => {
-                console.log('my query' , data.user.email)
-               setLoggedInEmail(data.user.email)
-              
+                console.log('my query', data.user.email)
+                setLoggedInEmail(data.user.email)
+
             })
             .catch(err => console.log(err))
-    }  
+    }
 
 
     const handleGoogleSignIn = () => {
@@ -56,8 +56,8 @@ const Login = () => {
 
                         setLoggedInEmail(user.user.email)
                         console.log(user.user.email)
-                        
-                   
+
+
 
                     })
             })
@@ -82,7 +82,7 @@ const Login = () => {
 
 
                 <div >
-                   
+
                 </div>
                 <input className='btn btn-primary' type="submit" />
                 <p>New Here? <Link className='hover:text-primary underline' to={'/signup'}>Sign Up</Link> </p>

@@ -5,6 +5,7 @@ import AllBuyers from "../Pages/Dashboard/Admin/AllBuyers";
 import AllSellers from "../Pages/Dashboard/Admin/AllSellers";
 import ReportedItem from "../Pages/Dashboard/Admin/ReportedItem";
 import MyOrders from "../Pages/Dashboard/Buyer/MyOrders";
+import Payment from "../Pages/Dashboard/Buyer/Payment";
 import AddProducts from "../Pages/Dashboard/Seller/AddProducts";
 import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -73,6 +74,11 @@ export const Router = createBrowserRouter([
             {
                 path : '/dashboard/reportedItems' ,
                 element : <AdminRoute><ReportedItem></ReportedItem></AdminRoute>
+            } ,
+            {
+                path : '/dashboard/payment/:id' ,
+                loader : ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`),
+                element : <PrivateRoute><Payment></Payment></PrivateRoute>
             }
 
         ]

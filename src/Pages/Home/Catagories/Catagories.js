@@ -30,7 +30,7 @@ const Catagories = () => {
 
                             <p><span className='font-semibold'>{catagory.CatagoryName}</span> is an international brand with great specialities.  </p>
                             <div className="card-actions justify-end">
-                            <Link className='btn btn-primary btn-sm text-white' to={`/catagory/${catagory.CatagoryName}`} >Show bikes</Link>
+                                <Link className='btn btn-primary btn-sm text-white' to={`/catagory/${catagory.CatagoryName}`} >Show bikes</Link>
                             </div>
 
                         </div>

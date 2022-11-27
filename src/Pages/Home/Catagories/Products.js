@@ -34,16 +34,15 @@ const Products = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data.acknowledged)
-              {  toast.error('Reported Successfully')}
-            
+                if (data.acknowledged) { toast.error('Reported Successfully') }
+
             })
     }
     console.log(products)
     return (
         <div>
             <h1 className="text-3xl text-center my-3">Bikes Of {id}</h1>
-           {product &&  <BookNowModal
+            {product && <BookNowModal
                 //    handleBookingBtn = { handleBookingBtn}
                 product={product}
                 user={user}

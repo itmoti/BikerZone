@@ -8,7 +8,7 @@ const AddProducts = () => {
     console.log(user)
     const navigate = useNavigate()
 
-//    const [productInfo  , setProductInfo] = useState('')
+    //    const [productInfo  , setProductInfo] = useState('')
     const [catagories, setCatagories] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/catagories')
@@ -44,34 +44,34 @@ const AddProducts = () => {
             YearsOfPurchase,
             YearsOfUsage,
             SellerName: user.displayName,
-            SellerEmail : user.email ,
-            AddedTime: new Date() ,
+            SellerEmail: user.email,
+            AddedTime: new Date(),
             ImageUrl
 
         }
         // setProductInfo(productInfo)
         fetch('http://localhost:5000/dashboard/Products',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productInfo)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.insertedId) {
-               navigate('/dashboard/MyProducts')
-            toast.success('Succesfully Added')
-            }
-        })
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productInfo)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.insertedId) {
+                    navigate('/dashboard/MyProducts')
+                    toast.success('Succesfully Added')
+                }
+            })
     }
-   
 
 
-      
- 
+
+
+
 
     return (
         <div >
@@ -98,17 +98,17 @@ const AddProducts = () => {
                     <span className="label-text">Condition Type</span> </label>
                 {/* <input type="text" placeholder="Condition Type" name='conditionType' className="input input-bordered input-sm input-primary w-full max-w-xs" required /> */}
                 <select name='conditionType' className="input input-bordered input-sm input-primary w-full max-w-xs" required>
-                <option value='Excellent'>Excellent</option>
-                <option value='Good'>Good</option>
-                <option value='Fair'>Fair</option>
-                  
+                    <option value='Excellent'>Excellent</option>
+                    <option value='Good'>Good</option>
+                    <option value='Fair'>Fair</option>
+
 
 
                 </select>
                 <label className="label">
                     <span className="label-text">Select Catagory</span> </label>
                 <select name='catagoryName' className="input input-bordered input-sm input-primary w-full max-w-xs" required>
-                  
+
                     {catagories.map(catagory =>
                         <option value={catagory.CatagoryName}>{catagory.CatagoryName}</option>
                     )}

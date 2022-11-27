@@ -9,7 +9,7 @@ const DashBoardLayout = () => {
     const {user} = useContext(UserContext)
     const [isSeller] = UseSeller(user?.email)
     const [isAdmin]  = UseAdmin(user?.email)
-    console.log('admin' , isAdmin)
+   
     const items =
         <>
 
