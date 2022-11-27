@@ -11,6 +11,8 @@ const Login = () => {
 
 
     const { signIn, googleSignIn } = useContext(UserContext)
+    const [success , setSuccess] = useState('')
+    const [error , setError] = useState('')
     const [loggedInEmail, setLoggedInEmail] = useState('')
     console.log('loggedin email', loggedInEmail)
     const [token] = UseToken(loggedInEmail)
@@ -21,18 +23,26 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
+        setSuccess('')
+        setError('')
         setLoggedInEmail('')
         signIn(user.Email, user.Password)
             .then(data => {
+                setSuccess(data.message)
                 console.log('my query', data.user.email)
                 setLoggedInEmail(data.user.email)
 
             })
-            .catch(err => console.log(err))
+            .catch(err =>{
+                console.log(err)
+                setError(err.message)
+            })
     }
 
 
     const handleGoogleSignIn = () => {
+        setSuccess('')
+        setError('')
 
         googleSignIn()
             .then(user => {
@@ -56,12 +66,15 @@ const Login = () => {
 
                         setLoggedInEmail(user.user.email)
                         console.log(user.user.email)
-
+                        setSuccess(data.message)
 
 
                     })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
     }
 
     return (
@@ -84,8 +97,10 @@ const Login = () => {
                 <div >
 
                 </div>
-                <input className='btn btn-primary' type="submit" />
+                <input className='btn btn-primary text-white' type="submit" value={'Login'} />
                 <p>New Here? <Link className='hover:text-primary underline' to={'/signup'}>Sign Up</Link> </p>
+                {error && <p className='text-error'>{error}</p>}
+                {success && <p className='text-success'> {success}</p>}
                 <button onClick={handleGoogleSignIn} className='btn btn-outline btn-primary hover:text-white active:text-white '>
                     <FcGoogle className='mr-3'></FcGoogle>
                     Google</button>

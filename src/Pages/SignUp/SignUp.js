@@ -8,6 +8,8 @@ import useToken from '../../Hooks/UseToken';
 
 const SignUp = () => {
     const [loggedInEmail, setLoggedInEmail] = useState('')
+    const [success , setSuccess] = useState('')
+    const [error , setError] = useState('')
 
     const [token] = useToken(loggedInEmail)
     const navigate = useNavigate()
@@ -17,12 +19,13 @@ const SignUp = () => {
     const { signup, updateFullProfile, googleSignIn } = useContext(UserContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleSignUpBtn = (user) => {
-
+        setError('')
+        setSuccess('')
 
 
         signup(user.Email, user.Password)
-            .then(data => {
-                console.log(data)
+            .then(data1 => {
+                console.log(data1)
                 const info = {
                     displayName: user.Name
                 }
@@ -31,7 +34,7 @@ const SignUp = () => {
                     role = 'seller'
                 }
                 updateFullProfile(info)
-                    .then(data => {
+                    .then(data2 => {
                         const userInfo = {
                             name: user.Name,
                             email: user.Email,
@@ -47,20 +50,25 @@ const SignUp = () => {
                                 body: JSON.stringify(userInfo)
                             })
                             .then(res => res.json())
-                            .then(data => {
-                                console.log(data)
+                            .then(data3 => {
+                                console.log(data3)
                                 setLoggedInEmail(user.Email)
+                                setSuccess(data1.message)
 
                             })
 
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {
+                        setError(error.message)
+                        console.log(error)
+                    })
 
             })
             .catch(err => console.log(err))
     }
     const handleGoogleSignIn = () => {
-
+        setError('')
+        setSuccess('')
         googleSignIn()
             .then(data => {
                 console.log(data)
@@ -82,11 +90,15 @@ const SignUp = () => {
                     .then(res => res.json())
                     .then(data2 => {
                         console.log(data2)
+                        setSuccess(data.message)
 
 
                     })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
     }
     return (
         <div className='text-center my-10 flex justify-center'>
@@ -112,7 +124,9 @@ const SignUp = () => {
                         <input {...register('seller')} type="checkbox" className="toggle text-xs" />
                     </label>
                 </div>
-                <input className='btn btn-primary text-white' type="submit" />
+                <input className='btn btn-primary text-white' type="submit" value={'Sign Up'}/>
+                {error && <p className='text-error'>{error}</p>}
+                {success && <p className='text-success'> {success}</p>}
                 <p className='my-2'>Already Have an account? <Link className='hover:text-primary underline' to={'/login'}>Login</Link> </p>
                 <button onClick={handleGoogleSignIn} className='btn btn-outline btn-primary hover:text-white active:text-white '>
                     <FcGoogle className='mr-3'></FcGoogle>

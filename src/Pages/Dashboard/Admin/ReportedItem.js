@@ -5,11 +5,20 @@ const ReportedItem = () => {
 
   const { data: reportedItems, refetch } = useQuery({
     queryKey: ['reportedItems'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/reportedItems`).then(res => res.json())
+    queryFn: () => fetch(`http://localhost:5000/dashboard/reportedItems`, {
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
+    }).then(res => res.json())
   })
   const handleDeleteBtn = (id) => {
     fetch(`http://localhost:5000/dashboard/reportedproducts/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
     })
       .then(res => res.json())
       .then(data => {

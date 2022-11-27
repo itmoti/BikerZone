@@ -45,7 +45,7 @@ const AddProducts = () => {
             YearsOfUsage,
             SellerName: user.displayName,
             SellerEmail: user.email,
-            AddedTime: new Date(),
+            AddedTime: new Date().toLocaleDateString(),
             ImageUrl
 
         }
@@ -54,7 +54,8 @@ const AddProducts = () => {
             {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(productInfo)
             })

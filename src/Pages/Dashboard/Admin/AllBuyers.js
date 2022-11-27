@@ -4,19 +4,28 @@ import React from 'react';
 const AllBuyers = () => {
   const { data: buyers, refetch } = useQuery({
     queryKey: ['buyers'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/allBuyers`).then(res => res.json())
+    queryFn: () => fetch(`http://localhost:5000/dashboard/allBuyers`, {
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
+    }).then(res => res.json())
 
 
   })
   const handleDeleteBtn = (id) => {
     fetch(`http://localhost:5000/dashboard/allBuyers/${id}`, {
       method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
 
 
     })
       .then(res => res.json())
       .then(data => {
-       
+
         refetch()
       })
   }
@@ -31,7 +40,7 @@ const AllBuyers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -42,7 +51,7 @@ const AllBuyers = () => {
                 <td>{buyer.name}</td>
                 <td>{buyer.email}</td>
                 <td>
-                  <button onClick={() => handleDeleteBtn(buyer._id)}>Delete</button>
+                  <button className='btn btn-error btn-sm' onClick={() => handleDeleteBtn(buyer._id)}>Delete</button>
                 </td>
               </tr>
             )}

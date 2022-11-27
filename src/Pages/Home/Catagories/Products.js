@@ -29,7 +29,11 @@ const Products = () => {
     const handleReportToAdminBtn = (id) => {
         console.log(id)
         fetch(`http://localhost:5000/catagory/product/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
         })
             .then(res => res.json())
             .then(data => {
@@ -64,7 +68,7 @@ const Products = () => {
 
                                     <div className='text-sm'>
                                         <p> <span className='font-semibold'>Location</span>: <br />{product.Location}</p>
-                                        <p> <span className='font-semibold'>Using Year</span> <br />: {product.YearsOfUsage} Years</p>
+                                        <p> <span className='font-semibold'>Using Year :</span> <br /> {product.YearsOfUsage} Years</p>
                                         <p> <span className='font-semibold'>Resell Price</span>: <br /> {product.ResellPrice} BDT</p>
                                         <p> <span className='font-semibold'>Condition</span>: <br /> {product.ConditionTpe} </p>
                                     </div>

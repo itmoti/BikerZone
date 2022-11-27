@@ -6,13 +6,17 @@ const AllSellers = () => {
     queryKey: ['Sellers'],
     queryFn: () => fetch(`http://localhost:5000/dashboard/allSellers`, {
       headers: {
-        authHeader: `Bearer ${localStorage.getItem('accessToken')}`
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }
     }).then(res => res.json())
   })
   const handleDeleteBtn = (id) => {
     fetch(`http://localhost:5000/dashboard/allSellers/${id}`, {
       method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
 
 
     })
@@ -26,6 +30,10 @@ const AllSellers = () => {
   const handleVerifyBtn = (id) => {
     fetch(`http://localhost:5000/dashboard/allSellers/verify/${id}`, {
       method: 'Put',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
 
 
     })
@@ -34,6 +42,7 @@ const AllSellers = () => {
         refetch()
       })
   }
+  console.log(sellers)
   return (
     <div>
 
@@ -64,7 +73,7 @@ const AllSellers = () => {
                   }
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteBtn(seller._id)}>Delete</button>
+                  <button className='btn btn-sm btn-error' onClick={() => handleDeleteBtn(seller._id)}>Delete</button>
                 </td>
               </tr>
             )}

@@ -17,14 +17,22 @@ const MyProducts = () => {
   const handleAdvertiseBtn = (id) => {
     console.log(id)
     fetch(`http://localhost:5000/dashboard/Products/${id}`, {
-      method: 'PUT'
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
     })
       .then(res => res.json())
       .then(data => console.log(data))
   }
   const handleDeleteBtn = (id) => {
     fetch(`http://localhost:5000/dashboard/products/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
     })
       .then(res => res.json())
       .then(data => {
@@ -39,7 +47,7 @@ const MyProducts = () => {
   console.log(products)
   return (
     <div>
-      my products
+            <h1 className="text-3xl font-bold my-3">My Products</h1>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -65,12 +73,12 @@ const MyProducts = () => {
                   <td>${product.ResellPrice}</td>
                   <td>
                     {
-                      product.Adveritse === true ? <span className='text-primary'>Advertised</span> : <button className='btn btn-primary' onClick={() => handleAdvertiseBtn(product._id)}>Advertise</button>
+                      product.Adveritse === true ? <span className='text-primary'>Advertised</span> : <button className='btn btn-primary btn-sm' onClick={() => handleAdvertiseBtn(product._id)}>Advertise</button>
                     }
 
                   </td>
                   <td>
-                    <button className='btn btn-primary' onClick={() => handleDeleteBtn(product._id)}>Delete</button>
+                    <button className='btn btn-primary btn-sm' onClick={() => handleDeleteBtn(product._id)}>Delete</button>
 
                   </td>
                 </tr>
