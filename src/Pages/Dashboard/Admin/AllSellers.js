@@ -59,7 +59,7 @@ const AllSellers = () => {
                   <td>{seller.email}</td>
                   <td>
                    {seller.Verified ?
-                  'verified' 
+                 <p className='text-primary'> verified</p>
                   : 
                   <button className='btn btn-sm btn-primary' onClick={() => handleVerifyBtn(seller._id)}>Verify</button> 
                   }

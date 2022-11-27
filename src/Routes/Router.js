@@ -12,8 +12,10 @@ import Products from "../Pages/Home/Catagories/Products";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import AdminRoute from "./AdminRoute";
 
 import PrivateRoute from "./PrivateRoute";
+import SellerRouter from "./SellerRouter";
 
 export const Router = createBrowserRouter([
     {
@@ -54,23 +56,23 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/dashboard/AddProducts',
-                element: <AddProducts></AddProducts>
+                element: <SellerRouter><AddProducts></AddProducts></SellerRouter>
             },
             {
                 path: '/dashboard/MyProducts',
-                element: <MyProducts></MyProducts>
+                element: <SellerRouter><MyProducts></MyProducts></SellerRouter>
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <AllBuyers></AllBuyers>
+                element:<AdminRoute> <AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/allSellers',
-                element: <AllSellers></AllSellers>
+                element:<AdminRoute> <AllSellers></AllSellers></AdminRoute>
             },
             {
                 path : '/dashboard/reportedItems' ,
-                element : <ReportedItem></ReportedItem>
+                element : <AdminRoute><ReportedItem></ReportedItem></AdminRoute>
             }
 
         ]

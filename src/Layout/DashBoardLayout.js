@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { UserContext } from '../Context/AuthContex';
+import UseAdmin from '../Hooks/UseAdmin';
+import UseSeller from '../Hooks/UseSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashBoardLayout = () => {
+    const {user} = useContext(UserContext)
+    const [isSeller] = UseSeller(user?.email)
+    const [isAdmin]  = UseAdmin(user?.email)
+    console.log('admin' , isAdmin)
     const items =
         <>
 
-            <li><Link to={'/dashboard'}>My Orders</Link></li>   Buyers 
-             <li><Link to={'/dashboard/AddProducts'}>Add a Product</Link></li> seller
-            <li><Link to={ '/dashboard/MyProducts'}>My Products</Link></li> seller
-            <li><Link to={'/dashboard/allBuyers'}>All Buyers</Link></li> admin
+           {
+            isSeller || isAdmin ||  <li><Link to={'/dashboard'}>My Orders</Link></li> 
+           } 
+            {
+                isSeller &&  <><li><Link to={'/dashboard/AddProducts'}>Add a Product</Link></li> 
+                <li><Link to={ '/dashboard/MyProducts'}>My Products</Link></li> </>
+            }
+            {
+                isAdmin && <>
+                <li><Link to={'/dashboard/allBuyers'}>All Buyers</Link></li> 
             <li><Link to={'/dashboard/allSellers'}>All Sellers</Link></li>
             <li><Link to={'/dashboard/reportedItems'}>Reported Item</Link></li>
+                </>
+            }
         </>
     return (
         <div>

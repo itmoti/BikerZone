@@ -6,8 +6,8 @@ const MyOrders = () => {
    
     const [myOrders , setMyOrders] = useState([])
     useEffect(() => {
-       if(user.email) {
-        fetch(`http://localhost:5000/bookings?email=${user.email}` , {
+       if(user?.email) {
+        fetch(`http://localhost:5000/bookings?email=${user?.email}` , {
             headers :{
                 authHeader :  `Bearer ${localStorage.getItem('accessToken')}`
                }

@@ -5,6 +5,7 @@ import { UserContext } from '../../../Context/AuthContex';
 
 const AddProducts = () => {
     const { user } = useContext(UserContext);
+    console.log(user)
     const navigate = useNavigate()
 
 //    const [productInfo  , setProductInfo] = useState('')

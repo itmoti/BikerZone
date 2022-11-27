@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../../../Catagory.json'
+
 import { UserContext } from '../../../Context/AuthContex';
-import data2 from '../../../data.json'
+
 
 
 const Catagories = () => {

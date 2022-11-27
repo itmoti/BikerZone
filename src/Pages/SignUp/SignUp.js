@@ -26,12 +26,16 @@ const SignUp = () => {
              const info = {
                 displayName : user.Name
              }
+             var role = "buyer"
+             if(user.seller) {
+                 role   = 'seller'
+             }
             updateFullProfile(info)
             .then(data => {
                const userInfo = {
                 name : user.Name ,
                 email : user.Email,
-                seller : user.seller
+                role : role
 
                }
               fetch('http://localhost:5000/users' , 
@@ -64,7 +68,7 @@ const SignUp = () => {
             const userInfo = {
                 name : data.user.displayName ,
                 email : data.user.email,
-                seller : false
+                role : "buyer" 
                 }
                 setLoggedInEmail(data.user.email)
               fetch('http://localhost:5000/users' , 

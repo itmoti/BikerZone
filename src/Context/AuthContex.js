@@ -21,7 +21,7 @@ const googleProvider = new GoogleAuthProvider();
     }
     const logOut = () => {
         setLoading(true)
-       
+        
         return signOut(auth)
     }
     const updateFullProfile = (information) => {

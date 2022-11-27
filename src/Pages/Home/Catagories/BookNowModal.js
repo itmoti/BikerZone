@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 
-const BookNowModal = ({ handleBookingBtn  ,product ,user}) => {
+const BookNowModal = ({ handleBookingBtn ,setProduct ,product ,user}) => {
         const {displayName ,email } = user
         const {ProductName,ResellPrice
 ,_id } = product
@@ -28,6 +28,7 @@ console.log(ResellPrice)
             .then(res => res.json())
             .then(data => {console.log(data)
                     toast.success('Items Booked')
+                    setProduct('')
             })
         }
   return (
