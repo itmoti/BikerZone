@@ -6,7 +6,7 @@ const GetStarted = () => {
        
             <div className="hero min-h-16 bg-base-100 border my-8">
   <div className="hero-content flex-col lg:flex-row">
-    <img src="https://img.freepik.com/premium-vector/premium-big-bike-motorcycle-emblem-illustration-label-vector-best-motorcycle-related-industry_289688-127.jpg?w=2000" alt='Loading' className="max-w-sm rounded-lg shadow-2xl" />
+    <img src="https://img.freepik.com/premium-vector/premium-big-bike-motorcycle-emblem-illustration-label-vector-best-motorcycle-related-industry_289688-127.jpg?w=2000" alt='Loading' className=" lg:max-w-sm   rounded-lg shadow-2xl" />
     <div>
       <h1 className="text-4xl font-bold">Wanna Order Cool Bikes
       <br/>

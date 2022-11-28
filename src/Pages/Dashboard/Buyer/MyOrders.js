@@ -10,7 +10,7 @@ const MyOrders = () => {
         if (user?.email) {
             fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
                 headers: {
-                    authHeader: `Bearer ${localStorage.getItem('accessToken')}`
+                  authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
                 .then(res => res.json())

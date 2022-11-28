@@ -25,7 +25,7 @@ const Products = () => {
                 setProducts(data)
             })
     }, [])
-
+   const [ verify, setVerify] = useState(false)
     const handleReportToAdminBtn = (id) => {
         console.log(id)
         fetch(`http://localhost:5000/catagory/product/${id}`, {
@@ -42,6 +42,17 @@ const Products = () => {
 
             })
     }
+
+   const [ sellerName , setSellerName] = useState('')
+   console.log(sellerName)
+//    const Bluetik = ({email}) => {
+//         fetch(`http://localhost:5000/verifySeller/${email}`)
+//         .then(res => res.json())
+//         .then(data => {
+//                setVerify(data.verify)
+//         })
+//    }
+
     console.log(products)
     return (
         <div>
@@ -62,6 +73,18 @@ const Products = () => {
                             className="w-[80%] card  p-3 mx-auto h-auto  border rounded-lg bg-base-100 shadow-xl">
                             <figure className='h-2/4'> <img className='' src={product.ImageUrl} alt='loading' /></figure>
                             <h1 className="text-xl font-bold">{product.ProductName}</h1>
+                            <h1 className="text-lg font-semibold">
+                            <span className='font-semibold'>Seller Name</span>: <br />
+                                {product.SellerName}</h1>
+                                {/* {
+                                   <Bluetik
+                                   email = {product.SellerEmail}
+                                   ></Bluetik>
+                                }
+                                {
+                                    verify && 'verifue'
+                                } */}
+                                
                             <div className='flex justify-between'>
 
                                 <div>

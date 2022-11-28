@@ -21,8 +21,9 @@ const BookNowModal = ({ handleBookingBtn, setProduct, product, user }) => {
     fetch('http://localhost:5000/bookings', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
-      },
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    },
       body: JSON.stringify(bookingInfo)
     })
       .then(res => res.json())

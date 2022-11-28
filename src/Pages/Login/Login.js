@@ -16,7 +16,7 @@ const Login = () => {
     const [loggedInEmail, setLoggedInEmail] = useState('')
     console.log('loggedin email', loggedInEmail)
     const [token] = UseToken(loggedInEmail)
-
+     console.log(token)
     if (token) {
         navigate('/')
     }
