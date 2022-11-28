@@ -10,7 +10,7 @@ const Catagories = () => {
 
     const [catagories, setCatagories] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/catagories')
+        fetch('https://bikezone-serverside-itmoti.vercel.app/catagories')
             .then(res => res.json())
             .then(data => setCatagories(data))
     }, [])

@@ -8,8 +8,8 @@ import useToken from '../../Hooks/UseToken';
 
 const SignUp = () => {
     const [loggedInEmail, setLoggedInEmail] = useState('')
-    const [success , setSuccess] = useState('')
-    const [error , setError] = useState('')
+    const [success, setSuccess] = useState('')
+    const [error, setError] = useState('')
 
     const [token] = useToken(loggedInEmail)
     const navigate = useNavigate()
@@ -41,7 +41,7 @@ const SignUp = () => {
                             role: role
 
                         }
-                        fetch('http://localhost:5000/users',
+                        fetch('https://bikezone-serverside-itmoti.vercel.app/users',
                             {
                                 method: 'POST',
                                 headers: {
@@ -79,7 +79,7 @@ const SignUp = () => {
                     role: "buyer"
                 }
                 setLoggedInEmail(data.user.email)
-                fetch('http://localhost:5000/users',
+                fetch('https://bikezone-serverside-itmoti.vercel.app/users',
                     {
                         method: 'POST',
                         headers: {
@@ -124,7 +124,7 @@ const SignUp = () => {
                         <input {...register('seller')} type="checkbox" className="toggle text-xs" />
                     </label>
                 </div>
-                <input className='btn btn-primary text-white' type="submit" value={'Sign Up'}/>
+                <input className='btn btn-primary text-white' type="submit" value={'Sign Up'} />
                 {error && <p className='text-error'>{error}</p>}
                 {success && <p className='text-success'> {success}</p>}
                 <p className='my-2'>Already Have an account? <Link className='hover:text-primary underline' to={'/login'}>Login</Link> </p>

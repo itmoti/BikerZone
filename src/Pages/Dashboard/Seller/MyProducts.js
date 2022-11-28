@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../../Context/AuthContex';
 import { useQuery } from '@tanstack/react-query'
 import Loader from '../../../Components/Loader';
+import toast from 'react-hot-toast';
 
 const MyProducts = () => {
   const { user } = useContext(UserContext)
@@ -10,13 +11,13 @@ const MyProducts = () => {
 
   const { data: products, isLoading, error, refetch } = useQuery({
     queryKey: ['products'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/products/${user.email}`).then(res => res.json())
+    queryFn: () => fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/products/${user.email}`).then(res => res.json())
 
 
   })
   const handleAdvertiseBtn = (id) => {
     console.log(id)
-    fetch(`http://localhost:5000/dashboard/Products/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/Products/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
@@ -24,10 +25,13 @@ const MyProducts = () => {
       },
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+         toast.success('Successfully Advertised')
+      })
   }
   const handleDeleteBtn = (id) => {
-    fetch(`http://localhost:5000/dashboard/products/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/products/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -47,7 +51,7 @@ const MyProducts = () => {
   console.log(products)
   return (
     <div>
-            <h1 className="text-3xl font-bold my-3">My Products</h1>
+      <h1 className="text-3xl font-bold my-3">My Products</h1>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">

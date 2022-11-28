@@ -4,7 +4,7 @@ import React from 'react';
 const AllBuyers = () => {
   const { data: buyers, refetch } = useQuery({
     queryKey: ['buyers'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/allBuyers`, {
+    queryFn: () => fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/allBuyers`, {
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -14,7 +14,7 @@ const AllBuyers = () => {
 
   })
   const handleDeleteBtn = (id) => {
-    fetch(`http://localhost:5000/dashboard/allBuyers/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/allBuyers/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',

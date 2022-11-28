@@ -18,17 +18,17 @@ const Products = () => {
 
     const [products, setProducts] = useState('')
     useEffect(() => {
-        fetch(`http://localhost:5000/catagory/${id}`)
+        fetch(`https://bikezone-serverside-itmoti.vercel.app/catagory/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
                 setProducts(data)
             })
     }, [])
-   const [ verify, setVerify] = useState(false)
+    const [verify, setVerify] = useState(false)
     const handleReportToAdminBtn = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/catagory/product/${id}`, {
+        fetch(`https://bikezone-serverside-itmoti.vercel.app/catagory/product/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -43,15 +43,15 @@ const Products = () => {
             })
     }
 
-   const [ sellerName , setSellerName] = useState('')
-   console.log(sellerName)
-//    const Bluetik = ({email}) => {
-//         fetch(`http://localhost:5000/verifySeller/${email}`)
-//         .then(res => res.json())
-//         .then(data => {
-//                setVerify(data.verify)
-//         })
-//    }
+    const [sellerName, setSellerName] = useState('')
+    console.log(sellerName)
+    //    const Bluetik = ({email}) => {
+    //         fetch(`https://bikezone-serverside-itmoti.vercel.app/verifySeller/${email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //                setVerify(data.verify)
+    //         })
+    //    }
 
     console.log(products)
     return (
@@ -74,9 +74,9 @@ const Products = () => {
                             <figure className='h-2/4'> <img className='' src={product.ImageUrl} alt='loading' /></figure>
                             <h1 className="text-xl font-bold">{product.ProductName}</h1>
                             <h1 className="text-lg font-semibold">
-                            <span className='font-semibold'>Seller Name</span>: <br />
+                                <span className='font-semibold'>Seller Name</span>: <br />
                                 {product.SellerName}</h1>
-                                {/* {
+                            {/* {
                                    <Bluetik
                                    email = {product.SellerEmail}
                                    ></Bluetik>
@@ -84,7 +84,7 @@ const Products = () => {
                                 {
                                     verify && 'verifue'
                                 } */}
-                                
+
                             <div className='flex justify-between'>
 
                                 <div>
@@ -101,7 +101,7 @@ const Products = () => {
                                     <p><span className='font-semibold'>Original Price</span> : <br />{product.OriginalPrice} BDT</p>
                                 </div>
                             </div>
-
+                 <p><span className='font-bold'>Item Description</span> : {product.Description}</p>
                             <div className='card-actions items-start justify-end '>
                                 <label onClick={() => setProduct(product)} htmlFor="bookingModal" className="btn btn-primary btn-sm">
                                     Book Now

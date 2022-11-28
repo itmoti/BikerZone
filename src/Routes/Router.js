@@ -23,7 +23,7 @@ export const Router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
-        errorElement : <ErrorPage></ErrorPage> ,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -31,12 +31,12 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/catagory/:id',
-                element:<PrivateRoute> <Products></Products></PrivateRoute>
+                element: <PrivateRoute> <Products></Products></PrivateRoute>
 
             },
             {
                 path: '/blogs',
-                element:<Blogs></Blogs>
+                element: <Blogs></Blogs>
             },
             {
                 path: '/signup',
@@ -55,7 +55,7 @@ export const Router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <DashBoardLayout></DashBoardLayout>,
-        errorElement : <ErrorPage></ErrorPage> ,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashboard',
@@ -71,26 +71,26 @@ export const Router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allBuyers',
-                element:<AdminRoute> <AllBuyers></AllBuyers></AdminRoute>
+                element: <AdminRoute> <AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/allSellers',
-                element:<AdminRoute> <AllSellers></AllSellers></AdminRoute>
+                element: <AdminRoute> <AllSellers></AllSellers></AdminRoute>
             },
             {
-                path : '/dashboard/reportedItems' ,
-                element : <AdminRoute><ReportedItem></ReportedItem></AdminRoute>
-            } ,
+                path: '/dashboard/reportedItems',
+                element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>
+            },
             {
-                path : '/dashboard/payment/:id' ,
-                loader : ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`),
-                element : <PrivateRoute><Payment></Payment></PrivateRoute>
+                path: '/dashboard/payment/:id',
+                loader: ({ params }) => fetch(`https://bikezone-serverside-itmoti.vercel.app/bookings/${params.id}`),
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             }
 
         ]
-    } , 
+    },
     {
-        path : '*' ,
-        element :  <ErrorPage></ErrorPage>
+        path: '*',
+        element: <ErrorPage></ErrorPage>
     }
 ])

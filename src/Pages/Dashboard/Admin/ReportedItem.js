@@ -5,7 +5,7 @@ const ReportedItem = () => {
 
   const { data: reportedItems, refetch } = useQuery({
     queryKey: ['reportedItems'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/reportedItems`, {
+    queryFn: () => fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/reportedItems`, {
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -13,7 +13,7 @@ const ReportedItem = () => {
     }).then(res => res.json())
   })
   const handleDeleteBtn = (id) => {
-    fetch(`http://localhost:5000/dashboard/reportedproducts/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/reportedproducts/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',

@@ -11,12 +11,12 @@ const Login = () => {
 
 
     const { signIn, googleSignIn } = useContext(UserContext)
-    const [success , setSuccess] = useState('')
-    const [error , setError] = useState('')
+    const [success, setSuccess] = useState('')
+    const [error, setError] = useState('')
     const [loggedInEmail, setLoggedInEmail] = useState('')
     console.log('loggedin email', loggedInEmail)
     const [token] = UseToken(loggedInEmail)
-     console.log(token)
+    console.log(token)
     if (token) {
         navigate('/')
     }
@@ -33,7 +33,7 @@ const Login = () => {
                 setLoggedInEmail(data.user.email)
 
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err)
                 setError(err.message)
             })
@@ -53,7 +53,7 @@ const Login = () => {
                     email: user.user.email,
                     seller: false
                 }
-                fetch('http://localhost:5000/users',
+                fetch('https://bikezone-serverside-itmoti.vercel.app/users',
                     {
                         method: 'POST',
                         headers: {

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../Context/AuthContex';
+import axios from 'axios';
 
 const AddProducts = () => {
     const { user } = useContext(UserContext);
@@ -10,10 +11,17 @@ const AddProducts = () => {
 
     //    const [productInfo  , setProductInfo] = useState('')
     const [catagories, setCatagories] = useState([])
+    // useEffect(() => {
+    //     fetch('https://bikezone-serverside-itmoti.vercel.app/catagories')
+    //         .then(res => res.json())
+    //         .then(data => setCatagories(data))
+    // }, [])
     useEffect(() => {
-        fetch('http://localhost:5000/catagories')
-            .then(res => res.json())
-            .then(data => setCatagories(data))
+        axios.get('https://bikezone-serverside-itmoti.vercel.app/catagories')
+        .then(data => {
+          
+            setCatagories(data.data)
+        })
     }, [])
 
     const handleAddBtn = event => {
@@ -50,7 +58,7 @@ const AddProducts = () => {
 
         }
         // setProductInfo(productInfo)
-        fetch('http://localhost:5000/dashboard/Products',
+        fetch('https://bikezone-serverside-itmoti.vercel.app/dashboard/Products',
             {
                 method: 'POST',
                 headers: {
@@ -111,7 +119,9 @@ const AddProducts = () => {
                 <select name='catagoryName' className="input input-bordered input-sm input-primary w-full max-w-xs" required>
 
                     {catagories.map(catagory =>
-                        <option value={catagory.CatagoryName}>{catagory.CatagoryName}</option>
+                        <option
+                        key={catagory._id}
+                        value={catagory.CatagoryName}>{catagory.CatagoryName}</option>
                     )}
 
 

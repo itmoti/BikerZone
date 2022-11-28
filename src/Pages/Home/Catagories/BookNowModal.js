@@ -18,12 +18,12 @@ const BookNowModal = ({ handleBookingBtn, setProduct, product, user }) => {
       BuyerNumber: event.target.mobileNumber.value,
       MeetingLocation: event.target.location.value
     }
-    fetch('http://localhost:5000/bookings', {
+    fetch('https://bikezone-serverside-itmoti.vercel.app/bookings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
-    },
+      },
       body: JSON.stringify(bookingInfo)
     })
       .then(res => res.json())

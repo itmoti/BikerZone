@@ -1,17 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 const AllSellers = () => {
   const { data: sellers, refetch } = useQuery({
     queryKey: ['Sellers'],
-    queryFn: () => fetch(`http://localhost:5000/dashboard/allSellers`, {
+    queryFn: () => fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/allSellers`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
       }
     }).then(res => res.json())
   })
   const handleDeleteBtn = (id) => {
-    fetch(`http://localhost:5000/dashboard/allSellers/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/allSellers/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -28,7 +29,7 @@ const AllSellers = () => {
   }
 
   const handleVerifyBtn = (id) => {
-    fetch(`http://localhost:5000/dashboard/allSellers/verify/${id}`, {
+    fetch(`https://bikezone-serverside-itmoti.vercel.app/dashboard/allSellers/verify/${id}`, {
       method: 'Put',
       headers: {
         'content-type': 'application/json',
@@ -67,7 +68,9 @@ const AllSellers = () => {
                 <td>{seller.email}</td>
                 <td>
                   {seller.Verified ?
-                    <p className='text-primary'> verified</p>
+                    <AiFillCheckCircle
+                    className='text-blue-700 h-6'
+                    ></AiFillCheckCircle>
                     :
                     <button className='btn btn-sm btn-primary' onClick={() => handleVerifyBtn(seller._id)}>Verify</button>
                   }
